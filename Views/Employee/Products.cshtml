@@ -1,0 +1,33 @@
+﻿@model IEnumerable<AgriEnergyConnect1.Models.Product>
+@{
+    ViewData["Title"] = "All Products";
+}
+<h2>All Products</h2>
+<form asp-action="Products" method="get" class="form-inline mb-3">
+    <div class="form-group">
+        <label for="category">Category:</label>
+        <input type="text" name="category" class="form-control mx-2" placeholder="Filter by category" />
+        <button type="submit" class="btn btn-primary">Filter</button>
+    </div>
+</form>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Production Date</th>
+            <th>Farmer</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Category</td>
+                <td>@product.ProductionDate.ToShortDateString()</td>
+                <td>@product.Farmer?.Name</td>
+            </tr>
+        }
+    </tbody>
+</table> 

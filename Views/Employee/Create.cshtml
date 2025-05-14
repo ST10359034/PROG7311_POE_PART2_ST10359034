@@ -1,0 +1,59 @@
+﻿@model AgriEnergyConnect1.Models.Employee
+
+@{
+    ViewData["Title"] = "Create Energy Provider Profile";
+}
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4>Complete Your Energy Provider Profile</h4>
+            </div>
+            <div class="card-body">
+                <form asp-action="Create" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="Name" class="control-label">Full Name</label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="Email" class="control-label">Email Address</label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="Department" class="control-label">Energy Department</label>
+                        <select asp-for="Department" class="form-control">
+                            <option value="">Select your department</option>
+                            <option value="Solar">Solar Energy</option>
+                            <option value="Wind">Wind Energy</option>
+                            <option value="Hydro">Hydro Energy</option>
+                            <option value="Biogas">Biogas</option>
+                            <option value="Biomass">Biomass</option>
+                            <option value="Geothermal">Geothermal</option>
+                            <option value="Other">Other Renewable Energy</option>
+                        </select>
+                        <span asp-validation-for="Department" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mt-4">
+                        <button type="submit" class="btn btn-primary">Create Profile</button>
+                        <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <p class="text-muted mb-0">Your profile information helps farmers understand what energy solutions you specialize in.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+} 

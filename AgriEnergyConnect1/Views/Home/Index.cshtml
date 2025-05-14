@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to AgriEnergyConnect</h1>
+    <p class="lead">Connecting farmers with renewable energy solutions for sustainable agriculture.</p>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h5>For Farmers</h5>
+            </div>
+            <div class="card-body">
+                <p>Join our platform to list your products and connect with energy providers. Get access to renewable energy solutions tailored for agricultural needs.</p>
+                <a asp-controller="Account" asp-action="Register" class="btn btn-outline-success">Register as Farmer</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5>For Energy Providers</h5>
+            </div>
+            <div class="card-body">
+                <p>Find agricultural partners and expand your renewable energy business. Connect with farmers looking for sustainable energy solutions.</p>
+                <a asp-controller="Account" asp-action="Register" class="btn btn-outline-primary">Register as Employee</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h5>Why Choose AgriEnergyConnect?</h5>
+            </div>
+            <div class="card-body">
+                <ul>
+                    <li>Direct connections between farmers and energy providers</li>
+                    <li>Sustainable energy solutions for agriculture</li>
+                    <li>Reduce carbon footprint and energy costs</li>
+                    <li>Support for transitioning to renewable energy sources</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div> 

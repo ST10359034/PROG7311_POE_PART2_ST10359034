@@ -1,0 +1,95 @@
+﻿@model IEnumerable<AgriEnergyConnect1.Models.Product>
+
+@{
+    ViewData["Title"] = "Farmer Dashboard";
+}
+
+<h1>Farmer Dashboard</h1>
+<h4>Welcome, @ViewBag.FarmerName!</h4>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Your Listed Products</h5>
+                <a asp-action="AddProduct" class="btn btn-light">Add New Product</a>
+            </div>
+            <div class="card-body">
+                @if (Model.Any())
+                {
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Production Date</th>
+                                    <th>Date Listed</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.Name</td>
+                                        <td>@item.Category</td>
+                                        <td>@item.Price.ToString("C")</td>
+                                        <td>@item.Quantity</td>
+                                        <td>@item.ProductionDate.ToShortDateString()</td>
+                                        <td>@item.DateListed.ToShortDateString()</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-info">
+                        <p>You haven't listed any products yet. <a asp-action="AddProduct">Add your first product</a> to get started.</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h5>Energy Solutions for Farmers</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Solar Energy</h5>
+                                <p class="card-text">Harness the power of the sun for sustainable farming operations.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Wind Energy</h5>
+                                <p class="card-text">Utilize wind power for efficient and clean energy on your farm.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Biogas Solutions</h5>
+                                <p class="card-text">Convert agricultural waste into valuable energy resources.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

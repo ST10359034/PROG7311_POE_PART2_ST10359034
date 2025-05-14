@@ -1,0 +1,91 @@
+﻿@model AgriEnergyConnect1.ViewModels.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Register" method="post">
+            <h4>Create a new account.</h4>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <label asp-for="ConfirmPassword"></label>
+                <input asp-for="ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <label asp-for="Role"></label>
+                <select asp-for="Role" class="form-control">
+                    <option value="">Select a role</option>
+                    <option value="Farmer">Farmer</option>
+                    <option value="Employee">Energy Provider</option>
+                </select>
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <button type="submit" class="btn btn-primary">Register</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h5>Join AgriEnergyConnect</h5>
+            </div>
+            <div class="card-body">
+                <p>By joining AgriEnergyConnect, you'll become part of a growing community dedicated to sustainable agriculture through renewable energy solutions.</p>
+
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <div class="card bg-light">
+                            <div class="card-header">
+                                <h6>Farmers</h6>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>List your agricultural products</li>
+                                    <li>Connect with energy providers</li>
+                                    <li>Access sustainable energy solutions</li>
+                                    <li>Reduce your energy costs</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card bg-light">
+                            <div class="card-header">
+                                <h6>Energy Providers</h6>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>Find agricultural partners</li>
+                                    <li>Expand your customer base</li>
+                                    <li>Offer renewable energy solutions</li>
+                                    <li>Support sustainable agriculture</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+} 

@@ -1,0 +1,100 @@
+﻿@model IEnumerable<AgriEnergyConnect1.Models.Product>
+
+@{
+    ViewData["Title"] = "Employee Dashboard";
+}
+
+<h1>Energy Provider Dashboard</h1>
+<h4>Welcome, @ViewBag.EmployeeName!</h4>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Available Agricultural Products</h5>
+                <a asp-action="ViewFarmers" class="btn btn-light">View All Farmers</a>
+            </div>
+            <div class="card-body">
+                @if (Model.Any())
+                {
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Date Listed</th>
+                                    <th>Farmer</th>
+                                    <th>Location</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.Name</td>
+                                        <td>@item.Category</td>
+                                        <td>@item.Price.ToString("C")</td>
+                                        <td>@item.Quantity</td>
+                                        <td>@item.DateListed.ToShortDateString()</td>
+                                        <td>@item.Farmer.Name</td>
+                                        <td>@item.Farmer.Location</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-info">
+                        <p>There are no products listed by farmers yet.</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h5>Energy Solutions Dashboard</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Product Statistics</h5>
+                                <p class="card-text">Total Products: @Model.Count()</p>
+                                <p class="card-text">Categories: @Model.Select(p => p.Category).Distinct().Count()</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Farmer Locations</h5>
+                                <p class="card-text">
+                                    @string.Join(", ", Model.Select(p => p.Farmer.Location).Distinct())
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Potential Opportunities</h5>
+                                <p class="card-text">Identify farmers who can benefit from your energy solutions.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

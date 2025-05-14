@@ -1,0 +1,75 @@
+﻿@model IEnumerable<AgriEnergyConnect1.Models.Farmer>
+
+@{
+    ViewData["Title"] = "View Farmers";
+}
+
+<a asp-action="AddFarmer" class="btn btn-success mb-3">Add New Farmer</a>
+
+<h1>Farmers Directory</h1>
+<p class="lead">Connect with farmers to offer your renewable energy solutions.</p>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5>Registered Farmers</h5>
+            </div>
+            <div class="card-body">
+                @if (Model.Any())
+                {
+                    <div class="row">
+                        @foreach (var farmer in Model)
+                        {
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-header">
+                                        <h5>@farmer.Name</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <p><strong>Location:</strong> @farmer.Location</p>
+                                        <p><strong>Email:</strong> @farmer.Email</p>
+                                        <a asp-action="FarmerProducts" asp-route-id="@farmer.Id" class="btn btn-outline-primary">
+                                            View Products
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-info">
+                        <p>There are no farmers registered yet.</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h5>Farmer Locations</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    @foreach (var location in Model.Select(f => f.Location).Distinct())
+                    {
+                        <div class="col-md-4 mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">@location</h5>
+                                    <p class="card-text">Farmers: @Model.Count(f => f.Location == location)</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

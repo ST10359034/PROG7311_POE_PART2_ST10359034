@@ -1,0 +1,61 @@
+﻿@model AgriEnergyConnect1.ViewModels.LoginViewModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+<h1>@ViewData["Title"]</h1>
+<div class="row">
+    <div class="col-md-4">
+        <section>
+            <form id="account" method="post">
+                <h4>Use your account to log in.</h4>
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group mt-2">
+                    <label asp-for="Password"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group mt-2">
+                    <div class="form-check">
+                        <input asp-for="RememberMe" class="form-check-input" />
+                        <label asp-for="RememberMe" class="form-check-label"></label>
+                    </div>
+                </div>
+                <div class="form-group mt-3">
+                    <button type="submit" class="btn btn-primary">Log in</button>
+                </div>
+                <div class="form-group mt-3">
+                    <p>
+                        Don't have an account? <a asp-action="Register">Register</a>
+                    </p>
+                </div>
+            </form>
+        </section>
+    </div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h5>AgriEnergyConnect Login</h5>
+            </div>
+            <div class="card-body">
+                <p>Welcome back to AgriEnergyConnect! Log in to access your account and continue managing your agricultural energy connections.</p>
+                <ul>
+                    <li>Farmers can manage their products and view energy solutions</li>
+                    <li>Energy providers can connect with farmers and offer solutions</li>
+                    <li>Secure platform for sustainable agricultural energy partnerships</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+} 

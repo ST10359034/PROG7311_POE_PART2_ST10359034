@@ -1,0 +1,139 @@
+﻿@model AgriEnergyConnect1.ViewModels.FarmerProductsViewModel
+
+@{
+    ViewData["Title"] = "Farmer Products";
+}
+
+<form method="get" asp-action="FarmerProducts" asp-route-id="@Model.Farmer.Id" class="mb-4">
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label>Category</label>
+            <select name="category" class="form-control">
+                <option value="">All</option>
+                <option value="Vegetables">Vegetables</option>
+                <option value="Fruits">Fruits</option>
+                <option value="Grains">Grains</option>
+                <option value="Dairy">Dairy</option>
+                <option value="Livestock">Livestock</option>
+                <option value="Poultry">Poultry</option>
+                <option value="Equipment">Equipment</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+        <div class="form-group col-md-3">
+            <label>Start Date</label>
+            <input type="date" name="startDate" class="form-control" />
+        </div>
+        <div class="form-group col-md-3">
+            <label>End Date</label>
+            <input type="date" name="endDate" class="form-control" />
+        </div>
+        <div class="form-group col-md-3 align-self-end">
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </div>
+    </div>
+</form>
+
+<div class="mb-3">
+    <a asp-action="ViewFarmers" class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left"></i> Back to Farmers
+    </a>
+</div>
+
+<div class="card mb-4">
+    <div class="card-header bg-success text-white">
+        <h4>Farmer Profile</h4>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <h5>@Model.Farmer.Name</h5>
+                <p><strong>Location:</strong> @Model.Farmer.Location</p>
+                <p><strong>Email:</strong> @Model.Farmer.Email</p>
+            </div>
+            <div class="col-md-6">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <h6>Energy Solutions Suggestions</h6>
+                        <ul>
+                            <li>Solar panels for farm equipment</li>
+                            <li>Wind turbines for rural locations</li>
+                            <li>Biogas generators for organic waste</li>
+                            <li>Energy-efficient irrigation systems</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header bg-primary text-white">
+        <h4>Products by @Model.Farmer.Name</h4>
+    </div>
+    <div class="card-body">
+        @if (Model.Products.Any())
+        {
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Production Date</th>
+                            <th>Date Listed</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var product in Model.Products)
+                        {
+                            <tr>
+                                <td>@product.Name</td>
+                                <td>@product.Category</td>
+                                <td>@product.Price.ToString("C")</td>
+                                <td>@product.Quantity</td>
+                                <td>@product.ProductionDate.ToShortDateString()</td>
+                                <td>@product.DateListed.ToShortDateString()</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mt-4">
+                <h5>Energy Requirements Analysis</h5>
+                <p>Based on the products and quantities, this farmer might benefit from:</p>
+
+                @if (Model.Products.Any(p => p.Category == "Vegetables" || p.Category == "Fruits"))
+                {
+                    <div class="alert alert-success">
+                        <strong>Solar-powered Irrigation Systems</strong> - Would help maintain consistent water supply for crops.
+                    </div>
+                }
+
+                @if (Model.Products.Any(p => p.Category == "Dairy" || p.Category == "Livestock"))
+                {
+                    <div class="alert alert-info">
+                        <strong>Biogas Digesters</strong> - Could convert animal waste into energy for farm operations.
+                    </div>
+                }
+
+                @if (Model.Products.Any(p => p.Category == "Equipment"))
+                {
+                    <div class="alert alert-warning">
+                        <strong>Energy-Efficient Equipment Upgrades</strong> - Replacing older equipment with energy-efficient alternatives.
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-info">
+                <p>This farmer hasn't listed any products yet.</p>
+            </div>
+        }
+    </div>
+</div> 
