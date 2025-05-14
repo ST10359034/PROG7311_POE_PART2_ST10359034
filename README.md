@@ -1,93 +1,87 @@
-# Agri-Energy Connect1 Prototype
+# AgriEnergyConnect1
 
-## Project Overview
-Agri-Energy Connect1 is a prototype web application designed to connect the agricultural sector with green energy technology providers. The platform enables farmers and employees to collaborate, manage products, and access resources for sustainable agriculture and renewable energy.
+## Getting Started from GitHub
+
+This guide will help you clone, set up, and run the AgriEnergyConnect1 project from GitHub.
+
+---
+
+## 1. Clone the Repository
+
+1. Go to the GitHub repository: [https://github.com/ST10359034/PROG7311_POE_PART2_ST10359034](https://github.com/ST10359034/PROG7311_POE_PART2_ST10359034)
+2. Click the green **Code** button and copy the HTTPS URL.
+3. Open a terminal or Git Bash and run:
+   ```sh
+   git clone https://github.com/ST10359034/PROG7311_POE_PART2_ST10359034.git
+   ```
+4. Navigate into the project folder:
+   ```sh
+   cd PROG7311_POE_PART2_ST10359034/AgriEnergyConnect1
+   ```
+
+---
+
+## 2. Open the Project in Visual Studio
+
+1. Open Visual Studio 2022 or later.
+2. Click **Open a project or solution** and select `AgriEnergyConnect1.sln` from the `AgriEnergyConnect1` folder inside the cloned repo.
+
+---
+
+## 3. Restore NuGet Packages
+
+- Visual Studio will usually prompt you to restore NuGet packages. If not, right-click the solution in Solution Explorer and select **Restore NuGet Packages**.
+
+---
+
+## 4. Set Up the Database
+
+1. Open the **Package Manager Console** (Tools > NuGet Package Manager > Package Manager Console).
+2. Make sure the **Default Project** (dropdown at the top) is set to `AgriEnergyConnect1`.
+3. Run:
+   ```sh
+   Update-Database
+   ```
+   This will use the Entity Framework Core migrations to create a new SQLite database (`AgriEnergyConnect.db`) with all tables and seed data.
+
+---
+
+## 5. Run the Application
+
+- Press `F5` or click the **Run** button in Visual Studio.
+- The app will open in your browser at `https://localhost:...`.
+
+---
 
 ## Project Structure
 
-- **AgriEnergyConnect1.sln**: Visual Studio solution file. Open this to load the project in Visual Studio.
+- **AgriEnergyConnect1.sln**: Visual Studio solution file.
 - **AgriEnergyConnect1.csproj**: Project file for the main application.
 - **Controllers/**, **Models/**, **Views/**, **ViewModels/**: MVC structure for the application.
-- **Data/**: Contains the database context and seed data logic.
-- **Migrations/**: Entity Framework Core migration scripts. These allow you to create the database schema automatically.
+- **Data/**: Database context and seed data logic.
+- **Migrations/**: Entity Framework Core migration scripts.
 - **wwwroot/**: Static files (CSS, JS, etc.).
 - **appsettings.json**: Configuration file for database connection and other settings.
 - **README.md**: This documentation.
 
-## Database Setup
+---
 
-**You do NOT need to use the included `.db` files. Instead, follow these steps to create your own database:**
+## Troubleshooting
 
-1. **Open the Solution**
-   - Double-click `AgriEnergyConnect1.sln` to open the project in Visual Studio 2022 or later.
+- **Always extract the project from a zip before opening in Visual Studio.**
+- **If you get path errors, move the project to a short path (e.g., `C:\Test\AgriEnergyConnect1`).**
+- **If the database does not generate, make sure you ran `Update-Database` in the Package Manager Console.**
+- **If you see missing files or errors, ensure you cloned the full repository and restored NuGet packages.**
 
-2. **Restore NuGet Packages**
-   - Visual Studio will prompt you, or right-click the solution and select "Restore NuGet Packages".
-
-3. **Apply Migrations to Create the Database**
-   - Open the **Package Manager Console** (Tools > NuGet Package Manager > Package Manager Console).
-   - Make sure the **Default Project** (dropdown at the top) is set to `AgriEnergyConnect1`.
-   - Run:
-     ```
-     Update-Database
-     ```
-   - This will use the scripts in the `Migrations` folder to create a new SQLite database (`AgriEnergyConnect.db`) with all tables and seed data.
-
-4. **Run the Application**
-   - Press `F5` or click the "Run" button in Visual Studio.
-
-## Notes
-
-- **Do not edit or use the `.db`, `.db-shm`, or `.db-wal` files directly.** They are generated automatically and can be deleted if you want to start fresh.
-- **If you encounter errors:**  
-  - Ensure you have the latest version of Visual Studio and the .NET SDK installed.
-  - Make sure you have write permissions in the project directory.
+---
 
 ## Quick Start Checklist
 
+- [ ] Clone the repository from GitHub
 - [ ] Open `AgriEnergyConnect1.sln` in Visual Studio
 - [ ] Restore NuGet packages
 - [ ] Run `Update-Database` in the Package Manager Console
 - [ ] Press `F5` to run the app
-
----
-
-If you follow these steps, you will be able to open, build, and run the project with no issues!
-
-## System Functionalities and User Roles
-
-### User Roles
-
-- **Farmer**
-  - Register and log in as a Farmer.
-  - Add and view their own agricultural products.
-- **Employee**
-  - Register and log in as an Employee.
-  - Add and view farmer profiles.
-  - View and filter all products listed by farmers.
-
-### Key Functionalities
-
-- **Authentication & Authorization**
-  - Secure login system with role-based access (Farmer, Employee).
-- **Product Management**
-  - Farmers can add, view, and manage their products.
-- **Profile Management**
-  - Employees can add and view farmer profiles.
-- **Product Browsing**
-  - Employees can view and filter all products.
-- **Responsive UI**
-  - User-friendly interface built with Bootstrap.
-- **Data Validation**
-  - All forms include validation for data integrity.
-
----
-
-## Additional Notes
-
-- Sample data is available in `AgriEnergyConnect1/Data/SeedData.cs` for quick testing.
-- The application uses SQLite by default but can be configured for SQL Server LocalDB.
-- For any issues, ensure your database connection string is correct and all migrations are applied.
 
 ---
 
